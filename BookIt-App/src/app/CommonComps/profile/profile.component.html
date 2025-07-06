@@ -1,0 +1,19 @@
+<div class="profile-container">
+  <h2>User Profile</h2>
+
+  <div class="profile-info">
+    <div class="info-item">
+      <strong>ID No:</strong> <span id="userId">{{user.id}}</span>
+    </div>
+    <div class="info-item">
+      <strong>Name:</strong> <span id="userName">{{user.username}}</span>
+    </div>
+    <div class="info-item">
+      <strong>Email:</strong> <span id="userEmail">{{user.email}}</span>
+    </div>
+  </div>
+
+  <div class="logout-container">
+    <button type="button" class="btn-logout" (click)="logeOut()">Log Out</button>
+  </div>
+</div>

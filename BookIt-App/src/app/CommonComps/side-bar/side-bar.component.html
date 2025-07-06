@@ -1,0 +1,18 @@
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="logo-title-container">
+      <img src="/bookIt.png" alt="BookIt Logo" class="logo-image">
+    </div>
+  </div>
+  <ul class="sidebar-menu">
+    <li><button class="sidebar-button" routerLink="/main/profile">Profile</button></li>
+    <li><button class="sidebar-button" routerLink="/main/dashboard" *ngIf="isUser()">Dash Board</button></li>
+    <li><button class="sidebar-button" routerLink="/main/books">Books</button></li>
+    <li><button class="sidebar-button" routerLink="/main/users" *ngIf="isAdmin()">Users</button></li>
+    <li><button class="sidebar-button" routerLink="/main/assignedBooks" *ngIf="isAdmin()">Assigned Books</button></li>
+    <li><button class="sidebar-button" routerLink="/main/addBooks" *ngIf="isAdmin()">Add Books</button></li>
+    <li><button class="sidebar-button" routerLink="/main/requestbook" *ngIf="isUser()">Request Book</button></li>
+    <li><button class="sidebar-button" routerLink="/main/remoteRequestbook" *ngIf="isAdmin()">Remote Book Requests</button></li>
+    <li><button class="sidebar-button" routerLink="/main/assign$Submit" *ngIf="isAdmin()">Library Services</button></li>
+  </ul>
+</div>

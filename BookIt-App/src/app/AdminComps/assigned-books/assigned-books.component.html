@@ -1,0 +1,29 @@
+<div class="books-List">
+  <h1>Assigned Book List</h1>
+  <table>
+    <thead>
+    <tr>
+      <th>User Id</th>
+      <th>User Name</th>
+      <th>Book Serial No</th>
+      <th>Book Name</th>
+      <th>Author</th>
+      <th>Category</th>
+      <th>Issue Date</th>
+      <th>Return Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let assignment of bookAssignments">
+      <td>{{ assignment.userId }}</td>
+      <td>{{ assignment.userName }}</td>
+      <td>{{ assignment.bookId }}</td>
+      <td>{{ assignment.title }}</td>
+      <td>{{ assignment.author }}</td>
+      <td>{{ assignment.category }}</td>
+      <td>{{ assignment.issueDate | date:'shortDate' }}</td>
+      <td>{{ assignment.returnDate | date:'shortDate' }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="box assign-book">
+    <h2>Assign Book to User</h2>
+    <form (ngSubmit)="assignBook()">
+      <div class="form-group">
+        <label for="bookSN">Book Serial Number:</label>
+        <input type="number" id="bookSN" [(ngModel)]="bookSn1" name="bookSN" required>
+      </div>
+      <div class="form-group">
+        <label for="userId">User ID:</label>
+        <input type="number" id="userId" [(ngModel)]="userId1" name="userId" required>
+      </div>
+      <button type="submit">Assign Book</button>
+    </form>
+  </div>
+
+  <div class="box submit-book">
+    <h2>Submit Book</h2>
+    <form (ngSubmit)="submitBook()">
+      <div class="form-group">
+        <label for="bookSN2">Book Serial Number:</label>
+        <input type="number" id="bookSN2" [(ngModel)]="bookSn2" name="bookSN2" required>
+      </div>
+      <div class="form-group">
+        <label for="userId2">User ID:</label>
+        <input type="number" id="userId2" [(ngModel)]="userId2" name="userId2" required>
+      </div>
+      <button type="submit">Submit Book</button>
+    </form>
+  </div>
+
+  <div class="box remove-user">
+    <h2>Remove User</h2>
+    <form (ngSubmit)="removeUser()">
+      <div class="form-group">
+        <label for="removeId1">User ID:</label>
+        <input type="number" id="removeId1" [(ngModel)]="removelId1" name="removeId1" required>
+      </div>
+      <button type="submit">Remove User</button>
+    </form>
+  </div>
+</div>

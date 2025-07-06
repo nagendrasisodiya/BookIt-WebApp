@@ -1,0 +1,30 @@
+<div class="book-requests-container">
+  <h1>Book Requests</h1>
+  <div *ngIf="bookRequests.length === 0" class="no-requests">
+    No pending book requests found.
+  </div>
+  <table *ngIf="bookRequests.length > 0">
+    <thead>
+    <tr>
+      <th>User ID</th>
+      <th>User Name</th>
+      <th>Address</th>
+      <th>Book Name</th>
+      <th>Author Name</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let request of bookRequests">
+      <td>{{ request.userId }}</td>
+      <td>{{ request.userName }}</td>
+      <td>{{ request.address }}</td>
+      <td>{{ request.title}}</td>
+      <td>{{ request.author }}</td>
+      <td>
+        <button (click)="assignBook(request)">Assign</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

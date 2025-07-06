@@ -1,0 +1,102 @@
+.add-book {
+  max-width: 600px;
+  width: 90%;
+  margin: 20px auto;
+  border-radius: 15px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-top: 4px solid #2980b9;
+}
+
+.add-book:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+  text-align: center;
+  color: #2980b9;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+  font-size: 2rem;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #1a3c5a;
+  font-weight: bold;
+}
+
+input {
+  width: 96%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus {
+  border-color: #0096C7;
+  box-shadow: 0 0 5px rgba(0, 150, 199, 0.5);
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  font-size: 1rem;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #2980b9, #1a3c5a);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+}
+
+button:disabled {
+  background-color: #ccc;
+  transform: none;
+  box-shadow: none;
+}
+
+@media (max-width: 768px) {
+  .add-book {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.2em;
+  }
+}

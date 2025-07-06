@@ -1,0 +1,18 @@
+<div class="register-newUser">
+  <h1>Registration Page</h1>
+  <form >
+    <div class="form-group">
+      <label for="username">User Name</label>
+      <input type="text" id="username" required [(ngModel)]="newUser.username" [ngModelOptions]="{standalone: true}" name="title">
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" id="email" required [(ngModel)]="newUser.email"  [ngModelOptions]="{standalone: true}" name="author">
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="text" id="password" required [(ngModel)]="newUser.password"  [ngModelOptions]="{standalone: true}" name="category">
+    <button type="submit" (click)="onSubmit()">register</button>
+    </div>
+  </form>
+</div>

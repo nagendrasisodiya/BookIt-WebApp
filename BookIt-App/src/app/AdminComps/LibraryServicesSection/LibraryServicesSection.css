@@ -1,0 +1,97 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto;
+  max-width: 1200px;
+}
+
+.box {
+  border-radius: 15px;
+  padding: 20px;
+  width: 300px;
+  margin: 20px;
+  background: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  border-top: 4px solid #3498db;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+.assign-book {
+  border-top-color: #3498db;
+}
+
+.submit-book {
+  border-top-color: #3498db;
+}
+
+.remove-user {
+  border-top-color: #3498db; /* Missing closing brace was added here */
+}
+
+h2 {
+  text-align: center;
+  color: #1a3c5a;
+  margin-bottom: 1.2rem;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #1a3c5a;
+  font-weight: bold;
+}
+
+input {
+  width: 94%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus {
+  border-color: #0096C7;
+  box-shadow: 0 0 5px rgba(0, 150, 199, 0.5);
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  font-size: 1rem;
+}
+
+.assign-book button,
+.submit-book button,
+.remove-user button {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+.assign-book button:hover,
+.submit-book button:hover,
+.remove-user button:hover {
+  background: linear-gradient(135deg, #2980b9, #1a3c5a);
+}
+
+@media (max-width: 768px) {
+  .box {
+    width: 100%;
+    max-width: 350px;
+  }
+}

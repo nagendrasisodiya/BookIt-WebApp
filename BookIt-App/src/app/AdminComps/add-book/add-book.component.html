@@ -1,0 +1,22 @@
+<div class="add-book">
+  <h1>Add Book</h1>
+  <form >
+    <div class="form-group">
+      <label for="title">Book Title:</label>
+      <input type="text" id="title" required [(ngModel)]="book.title" [ngModelOptions]="{standalone: true}" name="title">
+    </div>
+    <div class="form-group">
+      <label for="author">Author Name:</label>
+      <input type="text" id="author" required [(ngModel)]="book.author"  [ngModelOptions]="{standalone: true}" name="author">
+    </div>
+    <div class="form-group">
+      <label for="category">Category:</label>
+      <input type="text" id="category" required [(ngModel)]="book.category"  [ngModelOptions]="{standalone: true}" name="category">
+    </div>
+    <div class="form-group">
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" required [(ngModel)]="book.quantity" [ngModelOptions]="{standalone: true}" name="quantity">
+    </div>
+    <button type="submit" (click)="onSubmit()">Add Book</button>
+  </form>
+</div>

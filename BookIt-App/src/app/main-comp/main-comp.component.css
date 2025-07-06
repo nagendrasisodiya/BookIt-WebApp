@@ -1,0 +1,46 @@
+
+/* General styles for the app layout */
+body {
+  margin: 0;
+  font-family: -apple-system, sans-serif;
+  background-color: #f4f4f4;
+}
+
+.app-container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: whitesmoke;
+  color: white;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  background-color: #ffffff;
+  overflow-y: auto;
+}
+
+
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+.profile-info {
+  margin-top: 20px;
+}
+
+.info-item {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+strong {
+  color: #555;
+}

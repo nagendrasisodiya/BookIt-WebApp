@@ -1,0 +1,25 @@
+<div class="books-List">
+  <h1>Book List</h1>
+  <table>
+    <thead>
+    <tr>
+      <th>Serial No</th>
+      <th>Book Name</th>
+      <th>Author</th>
+      <th>Category</th>
+      <th *ngIf="isAdmin()">Quantity</th>
+      <th>Availability</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let book of books; let i = index">
+      <td>{{ book.sNo }}</td>
+      <td>{{ book.title }}</td>
+      <td>{{ book.author }}</td>
+      <td>{{ book.category }}</td>
+      <td *ngIf="isAdmin()">{{ book.quantity }}</td>
+      <td>{{ book.available }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

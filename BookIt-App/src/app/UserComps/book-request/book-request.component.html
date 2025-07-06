@@ -1,0 +1,18 @@
+<div class="add-book">
+  <h1>Request Book</h1>
+  <form >
+    <div class="form-group">
+      <label for="title">Book Title:</label>
+      <input type="text" id="title" required [(ngModel)]="bookRequest.title" [ngModelOptions]="{standalone: true}" name="BookTitle">
+    </div>
+    <div class="form-group">
+      <label for="Author">Book Author:</label>
+      <input type="text" id="Author" required [(ngModel)]="bookRequest.author" [ngModelOptions]="{standalone: true}" name="Author">
+    </div>
+    <div class="form-group">
+      <label for="Address">Address:</label>
+      <input type="text" id="Address" required [(ngModel)]="bookRequest.address"  [ngModelOptions]="{standalone: true}" name="Address">
+    </div>
+    <button type="submit" (click)="onSubmit()">Request-Book</button>
+  </form>
+</div>
