@@ -3,7 +3,6 @@ package org.spring.librarymanagmentsystemrestapi.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Set;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,14 +14,6 @@ public class AppUser {
     public String email;
     public String password;
     public String role="User";
-    @ManyToMany
-    @JoinTable(
-            name = "User_Book",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "book_id")
-    )
-    public Set<Book> books;
-
 
     //Getters and Setters
     public Integer getId() {
@@ -57,13 +48,6 @@ public class AppUser {
         this.password = password;
     }
 
-    public Set<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(Set<Book> books) {
-        this.books = books;
-    }
     public String getRole() {
         return role;
     }

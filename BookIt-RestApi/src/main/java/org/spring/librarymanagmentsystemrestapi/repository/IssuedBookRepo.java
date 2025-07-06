@@ -15,8 +15,6 @@ import java.util.List;
 public interface IssuedBookRepo extends JpaRepository<IssuedBook, Integer> {
     @Query("SELECT ib FROM IssuedBook ib WHERE ib.book = :book AND ib.user = :user")
     IssuedBook findByBookAndUser(@Param("book") Book book, @Param("user") AppUser user);
-//    @Query("SELECT ib FROM IssuedBook ib WHERE  ib.user = :user")
-//    List<IssuedBook> findByUser(@Param("user") AppUser user);
      List<IssuedBook> findByUser(AppUser user);
      List<IssuedBook> findByReturnDate(LocalDate returnDate);
 }

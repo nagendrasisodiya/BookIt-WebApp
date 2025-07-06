@@ -1,17 +1,16 @@
 package org.spring.librarymanagmentsystemrestapi.controller;
 
-import org.spring.librarymanagmentsystemrestapi.controller.DTO.UserBookDetailDTO;
+import org.spring.librarymanagmentsystemrestapi.controller.DTO.IssuedBookDetailDTO;
 import org.spring.librarymanagmentsystemrestapi.model.AppUser;
 import org.spring.librarymanagmentsystemrestapi.model.Book;
 import org.spring.librarymanagmentsystemrestapi.model.IssuedBook;
+import org.spring.librarymanagmentsystemrestapi.model.RemoteBookRequests;
 import org.spring.librarymanagmentsystemrestapi.service.AppUserService;
 import org.spring.librarymanagmentsystemrestapi.service.BookService;
 import org.spring.librarymanagmentsystemrestapi.service.IssuedBookService;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.spring.librarymanagmentsystemrestapi.service.RemoteBookRequestService;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,10 +23,13 @@ public class AdminController {
     private final AppUserService appUserService;
     private final BookService bookService;
     private final IssuedBookService issuedBookService;
-    public AdminController(AppUserService appUserService, BookService bookService, IssuedBookService issuedBookService) {
+    private final RemoteBookRequestService remoteBookRequestService;
+    public AdminController(AppUserService appUserService, BookService bookService,
+                           IssuedBookService issuedBookService, RemoteBookRequestService remoteBookRequestService) {
         this.appUserService = appUserService;
         this.bookService = bookService;
         this.issuedBookService = issuedBookService;
+        this.remoteBookRequestService = remoteBookRequestService;
     }
     @GetMapping("/getAllUsers")
     public List<AppUser> getAll() {
@@ -39,59 +41,61 @@ public class AdminController {
     }
     @PostMapping("/assignBook")
     public void assignBook(@RequestParam int userId, @RequestParam int bookId) {
-//        bookService.assignBookToUser(userId, bookId);
-
+        issuedBookService.issueBook(userId, bookId);
     }
     @PostMapping("/submitBook")
     public void submitBook( @RequestParam int userId, @RequestParam int bookId) {
-        bookService.bookSubmission(userId, bookId);
+        AppUser user=appUserService.getAppUserById(userId);
+        Book book=bookService.getBookById(bookId);
+        IssuedBook issuedBook = issuedBookService.getIssuedBookAndUser(user, book);
+        issuedBookService.bookSubmission(issuedBook);
     }
     @PostMapping("/removeUser")
     public void removeUser(@RequestParam int userId) {
         appUserService.removeUser(userId);
     }
     @GetMapping("/assignedBooks")
-    public List<UserBookDetailDTO> getAllAssignedBooksWithDates() {
-        List<AppUser> users = appUserService.getAllUsers();
-        List<IssuedBook> allIssuedBooks = issuedBookService.getAllIssuedBooks();
+    public List<IssuedBookDetailDTO> getAllAssignedBooksWithDates() {
+        List<IssuedBook> issuedBooks = issuedBookService.getAllIssuedBooks();
+        List<IssuedBookDetailDTO> issuedBookDetailDTOS = new ArrayList<>();
+        for (IssuedBook issuedBook : issuedBooks) {
+             IssuedBookDetailDTO dto=new IssuedBookDetailDTO(
+                    issuedBook.getBook().getsNo(),
+                    issuedBook.getBook().getTitle(),
+                    issuedBook.getBook().getAuthor(),
+                    issuedBook.getBook().getCategory(),
+                    issuedBook.getIssueDate(),
+                    issuedBook.getReturnDate(),
+                    issuedBook.getUser().getId(),
+                    issuedBook.getUser().getUsername()
+            );
+             issuedBookDetailDTOS.add(dto);
+        }
+        return issuedBookDetailDTOS;
+    }
+    @GetMapping("/getRemoteBookRequests")
+    public List<Map<String, Object>> getRemoteBookRequests() {
+        List<RemoteBookRequests> requests = remoteBookRequestService.getAllPendingRequests();
+        List<Map<String, Object>> response = new ArrayList<>();
 
-        // Create a map of (userId, bookId) -> IssuedBook for quick lookup
-        Map<String, IssuedBook> issuedBookMap = new HashMap<>();
-        for (IssuedBook issuedBook : allIssuedBooks) {
-            String key = issuedBook.getUser().getId() + "_" + issuedBook.getBook().getsNo();
-            issuedBookMap.put(key, issuedBook);
+        for (RemoteBookRequests request : requests) {
+            Map<String, Object> requestMap = new HashMap<>();
+            requestMap.put("requestId", request.getRequestId());
+            requestMap.put("userId", request.getUser().getId());
+            requestMap.put("userName", request.getUser().getUsername());
+            requestMap.put("address", request.getAddress()); // You may need to add the address field to AppUser or get it from somewhere else
+            requestMap.put("title", request.getBook().getTitle());
+            requestMap.put("author", request.getBook().getAuthor());
+            requestMap.put("bookId", request.getBook().getsNo());
+
+            response.add(requestMap);
         }
 
-        List<UserBookDetailDTO> result = new ArrayList<>();
+        return response;
+    }
 
-        for (AppUser user : users) {
-            for (Book book : user.getBooks()) {
-                String key = user.getId() + "_" + book.getsNo();
-                IssuedBook issuedBook = issuedBookMap.get(key);
-
-                LocalDate issueDate = null;
-                LocalDate returnDate = null;
-
-                if (issuedBook != null) {
-                    issueDate = issuedBook.getIssueDate();
-                    returnDate = issuedBook.getReturnDate();
-                }
-
-                UserBookDetailDTO dto = new UserBookDetailDTO(
-                        user.getId(),
-                        user.getUsername(),
-                        book.getsNo(),
-                        book.getTitle(),
-                        book.getAuthor(),
-                        book.getCategory(),
-                        issueDate,
-                        returnDate
-                );
-
-                result.add(dto);
-            }
-        }
-
-        return result;
+    @PostMapping("/completeRemoteBookRequest")
+    public void completeRemoteBookRequest(@RequestParam int requestId) {
+        remoteBookRequestService.completeRequest(requestId);
     }
 }

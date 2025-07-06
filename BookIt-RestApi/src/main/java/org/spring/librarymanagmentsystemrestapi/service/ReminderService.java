@@ -20,7 +20,7 @@ public class ReminderService {
     }
     @Scheduled(cron="0 0 9 * * ?")
     public void sendReminder() {
-        LocalDate tomorrow = LocalDate.now().plusDays(5);
+        LocalDate tomorrow = LocalDate.now().plusDays(1);
         List<IssuedBook> bookDueTommorow=issuedBookRepo.findByReturnDate(tomorrow);
         for(IssuedBook issuedBook:bookDueTommorow) {
             try{

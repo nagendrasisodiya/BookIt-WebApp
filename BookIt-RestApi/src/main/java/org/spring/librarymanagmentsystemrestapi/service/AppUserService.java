@@ -21,7 +21,9 @@ public class AppUserService {
         this.passwordEncoder = passwordEncoder;
     }
     public AppUser getAppUserById(int id) {
-        return appUserRepo.findById(id).get();
+        AppUser appUser = appUserRepo.findById(id)
+                .orElseThrow(()->new RuntimeException("User Not Found"));
+        return appUser;
     }
     public void addUser(AppUser appUser) {
         appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
@@ -35,12 +37,6 @@ public class AppUserService {
     }
     public void removeUser(int id) {
         AppUser appUser = appUserRepo.findById(id).get();
-        Set<Book> books= appUser.getBooks();
-        for (Book book : books) {
-            book.setAvailable(book.getAvailable()+1);
-        }
-        appUser.getBooks().clear();
-        appUserRepo.save(appUser);
         appUserRepo.delete(appUser);
     }
 

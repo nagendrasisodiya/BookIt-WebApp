@@ -2,7 +2,7 @@ package org.spring.librarymanagmentsystemrestapi.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.NoArgsConstructor;;
 
 
 import java.time.LocalDate;
@@ -14,7 +14,6 @@ public class IssuedBook {
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO)
     Integer uId;
-    String bookName;
     LocalDate issueDate;
     LocalDate returnDate;
     @ManyToOne
@@ -29,14 +28,6 @@ public class IssuedBook {
 
     public void setuId(Integer uId) {
         this.uId = uId;
-    }
-
-    public String getBookName() {
-        return bookName;
-    }
-
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
     }
 
     public LocalDate getIssueDate() {

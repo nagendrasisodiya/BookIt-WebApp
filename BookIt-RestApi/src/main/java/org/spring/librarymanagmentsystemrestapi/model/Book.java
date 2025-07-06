@@ -20,23 +20,15 @@ public class Book {
     public String category;
     public int quantity;
     public int available;
-    @ManyToMany(mappedBy = "books")
-    @JsonBackReference
-    public Set<AppUser> users;
-    @OneToMany(mappedBy = "book")
-    List<IssuedBook> issuedBooks;
     public Integer getsNo() {
         return sNo;
     }
-
     public void setsNo(Integer sNo) {
         this.sNo = sNo;
     }
-
     public String getTitle() {
         return title;
     }
-
     public void setTitle(String title) {
         this.title = title;
     }
@@ -73,12 +65,5 @@ public class Book {
         this.available = avialabile;
     }
 
-    public Set<AppUser> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<AppUser> users) {
-        this.users = users;
-    }
 
 }
