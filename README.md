@@ -68,6 +68,11 @@ To get started with BookIt, follow the instructions below for both the frontend 
    spring.datasource.password=your_password
    spring.jpa.hibernate.ddl-auto=update
    spring.jpa.show-sql=true
+   spring.app.security.jwtSecret:xxxxxx
+   spring.mail.username=username
+   spring.mail.password=password
+   spring.mail.properties.mail.smtp.from=
+   spring.mail.properties.mail.smtp.sender=
    ```
 
 4. Build and run the Spring Boot application:
