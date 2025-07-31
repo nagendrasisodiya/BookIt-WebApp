@@ -82,6 +82,10 @@ To get started with BookIt, follow the instructions below for both the frontend 
    ```
 
 5. The backend will be accessible at `http://localhost:8080`.
+   
+6. To gain a clearer understanding of the database schema.
+<img width="1367" height="878" alt="image" src="https://github.com/user-attachments/assets/2717eddd-55f3-428c-82ee-76a724ffcd7a" />
+
 
 ## Usage
 
